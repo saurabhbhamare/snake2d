@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum PlayerType
+{
+    Player1,
+    Player2
+}
 public class SnakePlayer2 : MonoBehaviour
 {
     private Vector2 _direction = Vector2.right; // for snake movement 
@@ -9,52 +13,90 @@ public class SnakePlayer2 : MonoBehaviour
     public Transform segmentPrefab; // prefab to add segments to the snake head
     private SnakeFood snakeFood;
     public BoxCollider2D wrapWall;
-    // public SpeedIncreasePowerUp SpeedincP;
-    public ScoreController scoreController;
-    //  private int speedUp = 2;
-
-    // public SpeedPowerUp speedpwrup;
-    //public SnakeFood snakeFoodArea;
+    public ScoreController2 scoreController2;
+    public ScoreController1 scoreController1;
+    public GameOverController gameOverController;
+    
+    //private bool snakeShield = false;
+    public PlayerType playerType;
 
     void Start()
     {
         _segments = new List<Transform>();
         _segments.Add(this.transform);
-
+       
     }
     private void Update()
     {
-        SnakeMovement();
+        
+        SnakeMovement(playerType);
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        this.transform.localEulerAngles = new Vector3(0, 0, (angle - 90));
         WrapWall();
     }
-    private void SnakeMovement()
+    private void SnakeMovement(PlayerType playerType)
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (_direction != Vector2.down)
+        if (playerType== PlayerType.Player1){
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _direction = Vector2.up;
+                if (_direction != Vector2.down)
+                {
+                    _direction = Vector2.up;
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (_direction != Vector2.up)
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                _direction = Vector2.down;
+                if (_direction != Vector2.up)
+                {
+                    _direction = Vector2.down;
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (_direction != Vector2.left)
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                _direction = Vector2.right;
+                if (_direction != Vector2.left)
+                {
+                    _direction = Vector2.right;
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (_direction != Vector2.right)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                _direction = Vector2.left;
+                if (_direction != Vector2.right)
+                {
+                    _direction = Vector2.left;
+                }
+            }
+            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+            this.transform.localEulerAngles = new Vector3(0, 0, (angle - 90));
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (_direction != Vector2.down)
+                {
+                    _direction = Vector2.up;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                if (_direction != Vector2.up)
+                {
+                    _direction = Vector2.down;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (_direction != Vector2.left)
+                {
+                    _direction = Vector2.right;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (_direction != Vector2.right)
+                {
+                    _direction = Vector2.left;
+                }
             }
         }
     }
@@ -70,40 +112,93 @@ public class SnakePlayer2 : MonoBehaviour
         0.0f
         );
     }
-    private void Grow()
-    {
+    private void Grow(PlayerType playerType)
+    { 
         Transform segment = Instantiate(this.segmentPrefab);
         segment.position = _segments[_segments.Count - 1].position;
         _segments.Add(segment);
-        scoreController.IncreaseScore(1);
+        if (playerType == PlayerType.Player1)
+        {
+            scoreController1.IncreaseScore(1);
+        }
+        else 
+        {
+            scoreController2.IncreaseScore(1);
+        } 
+    }
+    private void WinConditionCheck()
+    {
+        if (scoreController1.ReturnScore() > scoreController2.ReturnScore())
+        {
+            Debug.Log("Player 1 won");
+        }
+        else
+        {
+            Debug.Log("Player 2 won");
+        }
+    }
+    private void GameOver()
+    {
+        Time.timeScale = 0;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "SnakeSegment")
+        if (other.tag == "Food")
         {
-
+            Grow(playerType);
         }
-        else if (other.tag == "Food")
+        // if(other.tag == "SnakeSegment")
+        //{ 
+        //    if(scoreController1.score1>scoreController2.score2)
+        //    {
+        //        Debug.Log("Player1 Won");
+        //    }
+        //}
+         if(playerType == PlayerType.Player1)
         {
-            Grow();
-        }
-        else if (other.tag == "SpeedBoost")
-        {
-            StartCoroutine(increaseSpeedPowerUp());
-            Debug.Log("Speed increased");
-            scoreController.IncreaseScore(2);
-            IEnumerator increaseSpeedPowerUp()
+            if(other.gameObject.CompareTag("Snake2"))
             {
-                increaseSpeed();
+                WinConditionCheck();
+                GameOver();
+            }
+            else if(other.gameObject.CompareTag("Snake1"))
+            {
+                Debug.Log("Snake1 Attacked itself");
+                GameOver();
+            } 
+        }
+        if (playerType == PlayerType.Player2)
+        {
+            if (other.gameObject.CompareTag("Snake1"))
+            {
+                WinConditionCheck();
+                GameOver();
+            }
+            else if (other.gameObject.CompareTag("Snake2"))
+            {
+                Debug.Log("Snake2 Attacked itself");
+                GameOver();
+            }
+        }
+        //if (playerType == PlayerType.Player2 || other.tag =="Snake2")
+        //{
+        //    Debug.Log("Player 2 Won");
+        //}
+        if (other.tag == "SpeedBoost")
+        {
+            StartCoroutine(IncreaseSpeedPowerUp());
+            Debug.Log("Speed increased");
+            IEnumerator IncreaseSpeedPowerUp()
+            {
+                IncreaseSpeed();
                 yield return new WaitForSeconds(10f);
                 Time.fixedDeltaTime = 0.1f;
             }
         }
     }
-    private void increaseSpeed()
+    private void IncreaseSpeed()
     {
         Time.fixedDeltaTime = 0.06f;
-
     }
     private void WrapWall()
     {

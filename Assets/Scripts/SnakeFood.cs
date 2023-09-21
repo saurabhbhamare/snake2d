@@ -30,16 +30,14 @@ public class SnakeFood : MonoBehaviour
         {
             RandomizePosition();
         }
-        //else if(other.tag =="SpeedBoost")
-        //{
-        //    IEnumerator spawnPowerUp()
-        //    {
-        //        yield return new WaitForSeconds(4f);
-        //        RandomizePosition();
-        //    }
-        //}
-        //}
-
+        else if(other.tag == "Snake1")
+        {
+            RandomizePosition();
+        }
+        else if(other.tag == "Snake2")
+        {
+            RandomizePosition();
+        }
     }
 }
 

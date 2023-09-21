@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11632048
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 11632050}
-  - component: {fileID: 11632049}
-  m_Layer: 0
-  m_Name: GameAssets
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &11632049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11632048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3ffcccff2db8f48b5173b6b48e325d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snakeHeadSprite: {fileID: 21300000, guid: a6389c1368f3c0348a4a4d02194be695, type: 3}
-  snakeBodySprite: {fileID: 21300000, guid: 699ec0eb3513a9e4d9ec52b08a8544ba, type: 3}
-  foodSprite: {fileID: 21300000, guid: c3bd1ffb8de1fa441a845a659442868c, type: 3}
---- !u!4 &11632050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11632048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.82363, y: 6.073524, z: -1.8662546}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &89837553
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +299,7 @@ RectTransform:
   - {fileID: 1862937548}
   - {fileID: 1032421516}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -499,7 +453,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1005685918
 GameObject:
@@ -511,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005685920}
   - component: {fileID: 1005685919}
+  - component: {fileID: 1005685921}
   m_Layer: 0
   m_Name: PowerUps
   m_TagString: Untagged
@@ -545,8 +500,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005685921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005685918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6051957cb6e6dcb4b946351e8650d0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridArea: {fileID: 1419765182}
+  ShieldObject: {fileID: 8190478301845058518, guid: 07cd53654c0d6e845a2f697148e96a13, type: 3}
+  spawnTime: 4
 --- !u!1 &1032421515
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +530,7 @@ GameObject:
   - component: {fileID: 1032421517}
   - component: {fileID: 1032421519}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: GameOverScreen1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +771,7 @@ Transform:
   m_LocalScale: {x: 1.88, y: 1.04, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1419765182
 BoxCollider2D:
@@ -816,7 +786,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012709618, y: 0.14459133}
+  m_Offset: {x: 0.0018577576, y: -0.37097502}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -827,7 +797,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.386572, y: 17.702272}
+  m_Size: {x: 18.1305, y: 17.014847}
   m_EdgeRadius: 0
 --- !u!1 &1539470679 stripped
 GameObject:
@@ -850,6 +820,7 @@ MonoBehaviour:
   wrapWall: {fileID: 1419765182}
   scoreController: {fileID: 1862937551}
   gameOverController: {fileID: 1032421519}
+  snakeShield: 0
 --- !u!1 &1561622548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1209,10 @@ PrefabInstance:
     - target: {fileID: 1751389184542243880, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
       propertyPath: m_Name
       value: Snake
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243880, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
       propertyPath: m_RootOrder

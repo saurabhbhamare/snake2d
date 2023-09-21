@@ -9,6 +9,9 @@ TagManager:
   - SpeedBoost
   - DeathObject
   - Shield
+  - Snake1
+  - Snake2
+  - SnakeBody2
   layers:
   - Default
   - TransparentFX

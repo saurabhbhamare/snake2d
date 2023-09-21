@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    private Vector2 _direction = Vector2.right; // for snake movement 
-    private List<Transform> _segments;   // for snake body parts 
-    public Transform segmentPrefab; // prefab to add segments to the snake head
+    private Vector2 _direction = Vector2.right; 
+    private List<Transform> _segments;   
+    public Transform segmentPrefab;
     private SnakeFood snakeFood;
     public BoxCollider2D wrapWall;
     public ScoreController scoreController;
     public GameOverController gameOverController;
-  
+    
+    public bool snakeShield = false;
     void Start()
     {
         _segments = new List<Transform>();
-        _segments.Add(this.transform);
-     
+        _segments.Add(this.transform);  
     }
     private void Update()
     {
@@ -53,6 +53,8 @@ public class SnakeController : MonoBehaviour
                 _direction = Vector2.left;
             }
         }
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        this.transform.localEulerAngles = new Vector3(0, 0, (angle-90));
     }
     private void FixedUpdate()
     {
@@ -75,32 +77,51 @@ public class SnakeController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "SnakeSegment")
+         if(other.tag == "Snake1")
         {
+            if(snakeShield==true)
+            {
+                return;
+            }
+            else
             gameOverController.GameOver();
-            Debug.Log("game over");
+            Debug.Log("over");
         }
-        else if (other.tag =="Food" )
+         if (other.tag =="Food" )
         {
             Grow();
         }
-        else if(other.tag == "SpeedBoost")
+        if(other.tag == "SpeedBoost")
         {
-            StartCoroutine(increaseSpeedPowerUp());
+            StartCoroutine(IncreaseSpeedPowerUp());
             Debug.Log("Speed increased");
             scoreController.IncreaseScore(2);
-            IEnumerator increaseSpeedPowerUp()
+            IEnumerator IncreaseSpeedPowerUp()
             {
-                increaseSpeed();
+                IncreaseSpeed();
                 yield return new WaitForSeconds(10f);
                 Time.fixedDeltaTime = 0.1f;
             }      
         }
+        else if (other.tag == "Shield")
+        {
+            StartCoroutine(SnakeShieldPowerUp());
+            IEnumerator SnakeShieldPowerUp()
+            {
+                snakeShield = true;
+                yield return new WaitForSeconds(5f);
+                snakeShield = false;
+                //Time.fixedDeltaTime = 0.1f;
+            }
+        }
     }
-    private void increaseSpeed()
+    private void IncreaseSpeed()
     {
         Time.fixedDeltaTime = 0.06f;
-       
+    }
+    private void SnakeShield()
+    {
+        snakeShield = true;
     }
     private void WrapWall()
     {
@@ -122,4 +143,10 @@ public class SnakeController : MonoBehaviour
             this.transform.position = new Vector2(transform.position.x, bounds.max.y);
         }
     }
+    //private float GetAngleFromVector(Vector2Int dir)
+    //{
+    //    float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    if (n < 0) n += 360;
+    //    return n;
+    //}
 }

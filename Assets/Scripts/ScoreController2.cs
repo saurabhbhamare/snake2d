@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreController : MonoBehaviour
+public class ScoreController2: MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
-    private int score = 0;
+    public int score2 = 0;
     private void Awake()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
@@ -17,11 +17,15 @@ public class ScoreController : MonoBehaviour
     }
     public void IncreaseScore(int incscore)
     {
-        score += incscore;
+        score2 += incscore;
         RefreshUIScore();
     }
     private void RefreshUIScore()
     {
-        scoreText.text = "Your Score : " + score;
-    }    
+        scoreText.text = "Player 2 Score : " + score2;
+    }
+    public int ReturnScore()
+    {
+        return score2;
+    }
 }

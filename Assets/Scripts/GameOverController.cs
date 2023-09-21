@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-
 public class GameOverController : MonoBehaviour
 {
     //public GameObject gameOverScreen;
@@ -13,7 +11,6 @@ public class GameOverController : MonoBehaviour
     private void Awake()
     {
         mainScreen.onClick.AddListener(HomeScreen);
-        
     }
     public void GameOver()
     {
@@ -21,8 +18,7 @@ public class GameOverController : MonoBehaviour
     }
     public void HomeScreen()
     {
-        SceneManager.LoadScene("Lobby");
-        
+        SceneManager.LoadScene("Lobby"); 
     }
 
 }

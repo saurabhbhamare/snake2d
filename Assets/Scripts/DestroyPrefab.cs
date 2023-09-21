@@ -16,11 +16,17 @@ public class DestroyPrefab : MonoBehaviour
             Debug.Log("Shield destroyed");
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.CompareTag("ScoreBoost"))
+        else if (collision.gameObject.CompareTag("Snake1"))
         {
-            Debug.Log("Score boost destroyed");
             Destroy(this.gameObject);
+
         }
+        else if (collision.gameObject.CompareTag("Snake2"))
+        {
+            Destroy(this.gameObject);
+
+        }
+
     }
     
 

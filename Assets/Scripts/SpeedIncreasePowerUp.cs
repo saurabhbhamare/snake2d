@@ -6,14 +6,10 @@ public class SpeedIncreasePowerUp: MonoBehaviour
 {
     public BoxCollider2D gridArea3;
     public GameObject objectToSpawn;
-   // public GameObject// The object to spawn
-    public float spawnTime = 5f; // The time interval between spawns
+    public float spawnTime = 5f; 
     GameObject instantiatedObject;
-
-    //public SnakeFood snakefood;
     void Start()
     {
-        // Invoke the Spawn function every spawnTime seconds
         InvokeRepeating("Spawn", 2f, 6f);
         InvokeRepeating("Shield", 5f, 10f);
     }
@@ -27,7 +23,14 @@ public class SpeedIncreasePowerUp: MonoBehaviour
         {
             Spawn();
         }
-      
+        else if(other.gameObject.tag =="Snake1")
+        {
+            Spawn();
+        }
+       else if(other.gameObject.tag == "Snake2")
+        {
+            Spawn();
+        }
     }
   
     public void Spawn()
@@ -38,13 +41,5 @@ public class SpeedIncreasePowerUp: MonoBehaviour
         instantiatedObject = Instantiate(objectToSpawn, new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f), Quaternion.identity);  
         Destroy(instantiatedObject, 4f);  
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //        {
-    //        Debug.Log("destroyed the speed power up");
-    //        Destroy(instantiatedObject);
-    //       }
-    //}
-    
+  
 }

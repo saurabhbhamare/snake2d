@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7611684395927189717
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1751389184542243880, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_Name
+      value: Snake2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243880, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_TagString
+      value: Snake2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.61394346
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243882, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243883, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243883, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751389184542243883, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.42745098
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+--- !u!1 &8208951124620100861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1751389184542243880, guid: bac3f6067605aff45b39e18e981020f4, type: 3}
+  m_PrefabInstance: {fileID: 7611684395927189717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &54488019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208951124620100861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6418fbc413a41ec4fa704ba74dc49fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentPrefab: {fileID: 5671849679106058091, guid: 6587e0c3f1bc8cf41af81b7b8eb43e3f, type: 3}
+  wrapWall: {fileID: 0}
+  scoreController: {fileID: 0}
+  gameOverController: {fileID: 0}
+  playerType: 1
